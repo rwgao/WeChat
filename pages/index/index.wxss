@@ -1,1 +1,59 @@
-/* pages/index/index.wxss */
+/**index.wxss**/
+@import "../templates/template.wxss";
+
+.container {
+  background-color: #f2f2f2;
+}
+
+.banner {
+  height: 300rpx;
+  width: 20rem;
+}
+
+.banner image {
+  height: 300rpx;
+  width: 20rem;
+}
+
+.categoryTitle {
+  display: flex;
+  width: 706rpx;
+  align-items: center;
+  padding: 20rpx 20rpx 20rpx 24rpx;
+  font-size: 30rpx;
+  color: #656565;
+}
+
+.categoryTitle .line {
+  display: inline-block;
+  width: 6rpx;
+  height: 30rpx;
+  background-color: #f00;
+}
+
+.categoryTitle text {
+  font-size: 40rpx;
+  margin-left: 20rpx;
+  line-height: 36rpx;
+  font-weight: bold;
+}
+
+.brandList {
+  padding: 12rpx;
+  width: 726rpx;
+  overflow: hidden;
+}
+
+.brandList .items {
+  width: 736rpx;
+}
+
+.product {
+  padding: 12rpx;
+  width: 726rpx;
+  overflow: hidden;
+}
+
+.product .items {
+  width: 738rpx;
+}
