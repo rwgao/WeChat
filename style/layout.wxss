@@ -1,0 +1,10 @@
+.flex {
+  display: flex;
+}
+.flex_auto {
+  flex: 1;
+}
+
+
+
+
