@@ -1,1 +1,76 @@
 /* pages/classfy/index.wxss */
+
+.container {
+  background-color: #fff;
+  height: 100%;
+}
+
+.classfy-info {
+  width: 20rem;
+  background-color: #fff;
+}
+
+.classfy-left {
+  width: 180rpx;
+  float: left;
+}
+
+.classfy-left .navBar {
+  width: 180rpx;
+  background-color: #f5f5f5;
+  padding-top: 6rpx;
+  text-align: center;
+}
+
+.classfy-left .navBar .nav-item {
+  height: 90rpx;
+  line-height: 90rpx;
+  border-bottom: 1rpx solid #dedede;
+  font-size: 30rpx;
+  color: #939393;
+}
+
+.classfy-left .navBar .nav-item.active {
+  background-color: #fff;
+}
+
+.classfy-right {
+  float: right;
+  width: 570rpx;
+  height: 1110rpx;
+  overflow: auto;
+}
+
+.classfy-right .class-items .class-item {
+  height: 190rpx;
+  width: 190rpx;
+  float: left;
+}
+
+.classfy-right .class-items .class-item .class-pic {
+  padding: 40rpx 45rpx;
+  width: 100rpx;
+  height: 60rpx;
+}
+
+.classfy-right .class-items .class-item .class-pic image {
+  width: 100%;
+  height: 100%;
+}
+
+.classfy-right .class-items .class-item .class-name {
+  height: 50rpx;
+  line-height: 50rpx;
+  color: #939393;
+  font-size: 26rpx;
+  text-align: center;
+}
+
+.classfy-right .class-items .levelTwo {
+  background-color: #f0f0f0;
+  padding: 20rpx;
+  font-size: 28rpx;
+  font-weight: bold;
+  line-height: 40rpx;
+  color: #939393;
+}
