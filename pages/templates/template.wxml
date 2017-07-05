@@ -1,0 +1,51 @@
+<template name="venuesItems">
+  <view class="item">
+    <navigator url="../brand/index?id={{item.id}}">
+      <image src="{{item.bigpic}}"></image>
+    </navigator>
+  </view>
+</template>
+
+<template name="choiceItems">
+  <view class="item">
+    <navigator url="../details/index?id={{item.id}}">
+      <view class="pic">
+        <image src="{{item.goodspics}}"></image>
+      </view>
+      <view class="title">
+        {{item.title}}
+      </view>
+      <view class="shopName">
+        <text class="name">{{item.chinesename}}</text>
+        <text class="price">￥{{item.ourprice}}</text>
+      </view>
+    </navigator>
+  </view>
+</template>
+<template name="title">
+  <view class="categoryTitle">
+    <view class="line"></view>
+    <text>{{title}}</text>
+  </view>
+</template>
+
+<template name="goods">
+  <view class="goods-item">
+    <navigator url="../details/index?id={{list.id}}">
+      <view class="pic">
+        <image src="{{list.goodspics}}"></image>
+      </view>
+      <view class="goods-name">
+        {{list.title}}
+      </view>
+      <view class="country">
+        {{list.country}}直采 {{list.bigname}}发货
+      </view>
+      <view class="price">
+        <text class="ourprice">￥{{list.ourprice}}</text>
+        <text class="marketprice">￥{{list.marketprice}}
+        </text>
+      </view>
+    </navigator>
+  </view>
+</template>

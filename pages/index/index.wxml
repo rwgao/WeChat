@@ -1,2 +1,37 @@
-<!--pages/index/index.wxml-->
-<text>pages/index/index.wxml</text>
+<!--index.wxml-->
+<import src="../templates/template.wxml" />
+<view class="container">
+  <view class="banner">
+    <swiper interval="{{interval}}" vertical="{{vertical}}" autoplay="{{autoPlay}}" duration="{{duration}}" indicator-dots="{{indicatorDots}}">
+      <block wx:for="{{images}}">
+        <swiper-item>
+          <navigator data-id="{{item.id}}" url="{{item.targeturl}}">
+            <image src="{{item.picurl}}"></image>
+          </navigator>
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+  <view class="categoryTitle">
+    <view class="line"></view>
+    <text>主题馆</text>
+  </view>
+  <view class="brandList">
+    <view class="items">
+      <block wx:for="{{venuesItems}}">
+        <template is="venuesItems" data="{{item}}"></template>
+      </block>
+    </view>
+  </view>
+  <template is="title" data="{{title}}"></template>
+  <view class="product">
+    <view class="items">
+      <block wx:for="{{choiceItems}}">
+        <template is="choiceItems" data="{{item}}"></template>
+      </block>
+    </view>
+  </view>
+</view>
+<loading hidden="{{loadingHidden}}">
+  加载中...
+</loading>

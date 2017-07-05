@@ -1,2 +1,45 @@
 <!--pages/classfy/index.wxml-->
-<text>pages/classfy/index.wxml</text>
+<view class="container">
+  <view class="classfy-info">
+    <view class="classfy-left">
+      <view class="navBar">
+        <block wx:for="{{navList}}">
+          <view class="nav-item {{curNav == index ? 'active' : ''}}" bindtap="switchRigthList" data-index="{{index}}" data-id="{{item.id}}">
+            {{item.tree.desc}}
+          </view>
+        </block>
+      </view>
+    </view>
+    <scroll-view scroll-y="true" scroll-top="{{top}}" class="classfy-right">
+      <view class="class-items" wx:if="{{navList[curNav].tree.nodes}}">
+        <block class="classname" wx:for="{{navList[curNav].tree.nodes}}">
+          <view class="levelTwo" wx:if="{{item.tree.desc}}">{{item.tree.desc}}</view>
+          <view class="levelTwo" wx:else>{{item.tree.desc2}}</view>
+          <view class="items clearfix">
+            <block wx:for="{{item.tree.nodes}}">
+              <view class="class-item">
+                <navigator url="../list/index?brand={{item.tree.id}}&typeid={{navList[curNav].id}}">
+                  <view class="class-pic">
+                    <block wx:if="{{item.tree.logo}}">
+                      <image src="{{item.tree.logo}}"></image>
+                    </block>
+                    <block wx:else>
+                      <image src="http://temp.im/50x30"></image>
+                    </block>
+                  </view>
+                  <view class="class-name" wx:if="{{item.tree.desc}}">
+                    {{item.tree.desc}}
+                  </view>
+                  <view class="class-name" wx:else>
+                    {{item.tree.desc2}}
+                  </view>
+                </navigator>
+              </view>
+            </block>
+          </view>
+
+        </block>
+      </view>
+    </scroll-view>
+  </view>
+</view>
