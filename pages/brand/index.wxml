@@ -1,2 +1,59 @@
 <!--pages/brand/index.wxml-->
-<text>pages/brand/index.wxml</text>
+<import src="../templates/template.wxml" />
+<view class="container">
+  <view class="title">
+    人气品牌
+  </view>
+  <view class="brandList">
+    <block wx:for="{{brandList.brand}}">
+      <view class="brand-item">
+        <navigator url="../list/index?brand={{item.id}}&typeid={{item.typeid}}">
+          <view class="left">
+            <image src="{{item.pic}}"></image>
+          </view>
+          <view class="right">
+            <view class="logo">
+              <image src="{{item.logo}}"></image>
+            </view>
+            <view class="brandName">
+              {{item.chinesename?item.chinesename:item.englishname}}
+            </view>
+            <view class="desc">
+              {{item.brief}}
+            </view>
+            <view class="minPrice">
+              ￥{{item.minprice}}/件起
+            </view>
+          </view>
+        </navigator>
+      </view>
+    </block>
+  </view>
+  <view class="category" wx:for="{{types}}">
+    <view class="categoryName">
+      {{item.subdesc}}
+    </view>
+    <block wx:if="{{dataList[index].dataList.length}}">
+      <view class="goods">
+        <block wx:for="{{dataList[index].dataList}}" wx:for-item="list">
+          <template is="goods" data="{{list}}"></template>
+        </block>
+        <block wx:if="{{dataList[index].currentPage != dataList[index].totalPage}}">
+          <view class="goods-item show-more">
+            <view class="more" bindtap="tapName" data-id="{{item.subid}}" data-pageNo="{{dataList[index].currentPage}}" data-totalPage="{{dataList[index].totalPage}}" data-tabindex="{{index}}">
+              加载更多{{item.subdesc}}
+            </view>
+          </view>
+        </block>
+      </view>
+    </block>
+    <block wx:else>
+      <view class="noList">
+        该分类下暂无商品
+      </view>
+    </block>
+  </view>
+  <loading hidden="{{loadingHidden}}">
+    加载中...
+  </loading>
+</view>
