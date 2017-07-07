@@ -1,2 +1,11 @@
 <!--pages/list/index.wxml-->
-<text>pages/list/index.wxml</text>
+<import src="../templates/template.wxml" />
+<view class="container">
+  <view class="inner">
+    <view class="goods">
+      <block wx:for="{{dataList}}" wx:for-item="list">
+        <template is="goods" data="{{list}}"></template>
+      </block>
+    </view>
+  </view>
+</view>
