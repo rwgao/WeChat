@@ -1,2 +1,35 @@
 <!--pages/details/index.wxml-->
-<text>pages/details/index.wxml</text>
+<view class="container">
+  <view class="productPic">
+  <swiper indicator-dots="{{indicatorDots}}" interval="{{interval}}" vertical="{{vertical}}" autoplay="{{autoplay}}" duration="{{duration}}">
+  <block wx:for="{{goodsPicsInfo}}">
+  <swiper-item>
+    <image src="{{item.picurl}}"></image>
+  </swiper-item>
+  </block>
+  </swiper>
+  </view>
+  <view class="productName">
+  <view class="name">
+  {{shopppingDetails.title}}
+  </view>
+  </view>
+  <view class="reason">{{shopppingDetails.reason}}</view>
+  <view class="productPirce">
+    <view class="left">
+      <view class="price">
+      ￥{{shopppingDetails.ourprice}}
+      </view>
+      <view class="marketPrice">
+        ￥{{shopppingDetails.marketprice}}
+      </view>
+    </view>
+    <view class="right">
+      <view class="sales">已售{{2}}件</view>
+      <view class="freight">运费：{{freight}}</view>
+    </view>
+  </view>
+  <view class="addcart" bindtap="addcart" data-id="{{goodid}}">
+    加入购物车
+  </view>
+</view>
