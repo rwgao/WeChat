@@ -1,1 +1,18 @@
 /* pages/list/index.wxss */
+@import "../templates/template.wxss";
+page{
+  background-color: #fff;
+  min-height: 100%;
+}
+.container{
+  padding: 0 40rpx;
+  background-color: #fff;
+}
+.container .goods{
+  width: 710rpx;
+}
+.container .inner{
+  width: 670rpx;
+  overflow: hidden;
+  padding-top: 80rpx;
+}
