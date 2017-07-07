@@ -8,7 +8,8 @@ Page({
     pageNo: 0,
     pageSize: 15,
     totalPage: 0,
-    loadingHidden: true
+    loadingHidden: true,
+    maskHidden: true
   },
   tapName: function (event) {
     var that = this;
@@ -19,7 +20,8 @@ Page({
     var dataList = that.data.dataList;
     pageNo++;
     that.setData({
-      loadingHidden: false
+      loadingHidden: false,
+      maskHidden: false
     })
     if (pageNo <= totalpage) {
       wx.request({
@@ -37,7 +39,8 @@ Page({
           dataList[index].currentPage = pageNo
           that.setData({
             dataList: dataList,
-            loadingHidden: true
+            loadingHidden: true,
+            maskHidden: true
           })
         }
       })

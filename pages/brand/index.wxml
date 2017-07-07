@@ -56,4 +56,5 @@
   <loading hidden="{{loadingHidden}}">
     加载中...
   </loading>
+  <mask hidden="{{maskHidden}}" hover-style="none"/>
 </view>
