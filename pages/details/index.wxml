@@ -1,35 +1,78 @@
 <!--pages/details/index.wxml-->
 <view class="container">
-  <view class="productPic">
-  <swiper indicator-dots="{{indicatorDots}}" interval="{{interval}}" vertical="{{vertical}}" autoplay="{{autoplay}}" duration="{{duration}}">
-  <block wx:for="{{goodsPicsInfo}}">
-  <swiper-item>
-    <image src="{{item.picurl}}"></image>
-  </swiper-item>
-  </block>
-  </swiper>
-  </view>
-  <view class="productName">
-  <view class="name">
-  {{shopppingDetails.title}}
-  </view>
-  </view>
-  <view class="reason">{{shopppingDetails.reason}}</view>
-  <view class="productPirce">
-    <view class="left">
+  <scroll-view class="scroll" scroll-y="true">
+    <view class="productPic">
+      <swiper indicator-dots="{{indicatorDots}}" interval="{{interval}}" vertical="{{vertical}}" autoplay="{{autoplay}}" duration="{{duration}}">
+        <block wx:for="{{goodsPicsInfo}}">
+          <swiper-item>
+            <image src="{{item.picurl}}"></image>
+          </swiper-item>
+        </block>
+      </swiper>
+    </view>
+    <view class="productDesc">
+      <view class="productName">
+        {{shopppingDetails.title}}
+      </view>
+      <view class="reason">{{shopppingDetails.reason}}</view>
+    </view>
+    <view class="productPirce">
       <view class="price">
-      ￥{{shopppingDetails.ourprice}}
+        <text>小镇价：</text>
+        ￥{{shopppingDetails.ourprice}}
       </view>
       <view class="marketPrice">
+        <text>市场价：</text>
         ￥{{shopppingDetails.marketprice}}
       </view>
     </view>
-    <view class="right">
-      <view class="sales">已售{{2}}件</view>
-      <view class="freight">运费：{{freight}}</view>
+    <view class="delivery-notice">
+      {{shopppingDetails.country}}直采 {{shopppingDetails.bigname}}发货 预计{{shopppingDetails.days}}天送达
+    </view>
+    <view class="weui-tab">
+      <view class="weui-navbar">
+        <block wx:for="{{tabs}}" wx:key="*this">
+          <view id="{{index}}" class="weui-navbar__item {{activeIndex == index ? 'weui-bar__item_on' : ''}}" bindtap="tabClick">
+            <view class="weui-navbar__title">{{item}}</view>
+          </view>
+        </block>
+        <view class="weui-navbar__slider" style="left: {{sliderLeft}}px; transform: translateX({{sliderOffset}}px); -webkit-transform: translateX({{sliderOffset}}px);"></view>
+      </view>
+      <view class="weui-tab__panel">
+        <view class="weui-tab__content" hidden="{{activeIndex != 0}}">
+          <view class="detailinfo">
+            <block wx:for="{{detailinfo}}">
+              <image src="{{item.attr.src}}" bindload="imageLoad" style="height:{{item.attr.height ? item.attr.height : 700}}px;" data-index="{{index}}"></image>
+            </block>
+          </view>
+        </view>
+        <view class="weui-tab__content " hidden="{{activeIndex !=1 }}">
+          <view class="params_list clearfix ">
+            <block wx:for="{{prodparams}}">
+              <view class="productparams">
+                {{item}}
+              </view>
+            </block>
+          </view>
+
+        </view>
+        <view class="weui-tab__content " hidden="{{activeIndex !=2 }}">
+          <view class="commitment">
+            <image src="../../images/11499670510_.pic_hd.jpg"></image>
+          </view>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+
+  <view class="buyCart ">
+    <view class="cart" bindtap="toCart">
+      <icon type="info" />
+      <text>3</text>
+    </view>
+    <view class="addcart " bindtap="addcart " data-id="{{goodid}} ">
+      加入购物车
     </view>
   </view>
-  <view class="addcart" bindtap="addcart" data-id="{{goodid}}">
-    加入购物车
-  </view>
+
 </view>
