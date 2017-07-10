@@ -5,7 +5,7 @@
     <swiper interval="{{interval}}" vertical="{{vertical}}" autoplay="{{autoPlay}}" duration="{{duration}}" indicator-dots="{{indicatorDots}}">
       <block wx:for="{{images}}">
         <swiper-item>
-          <navigator data-id="{{item.id}}" url="{{item.targeturl}}">
+          <navigator data-id="{{item.id}}" url="../brand/index">
             <image src="{{item.picurl}}"></image>
           </navigator>
         </swiper-item>
