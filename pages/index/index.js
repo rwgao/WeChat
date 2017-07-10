@@ -33,7 +33,6 @@ Page({
         'Accept': 'application/json'
       },
       success: function (res) {
-        console.log(res)
         that.setData({
           images: res.data
         })
@@ -47,7 +46,6 @@ Page({
         'Accept': 'application/json'
       },
       success: function (res) {
-        console.log(res);
         that.setData({
           venuesItems: res.data.data
         })
@@ -66,7 +64,6 @@ Page({
         'Accept': 'application/json'
       },
       success: function (res) {
-        console.log(res)
         that.setData({
           choiceItems: res.data.data.dataList
         })
