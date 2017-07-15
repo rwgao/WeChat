@@ -1,6 +1,6 @@
 <!--pages/details/index.wxml-->
 <view class="container">
-  <scroll-view class="scroll" scroll-y="true">
+  <scroll-view class="scroll" scroll-y="true" scroll-top="{{top}}" bindscroll="scrollViewEvent">
     <view class="productPic">
       <swiper indicator-dots="{{indicatorDots}}" interval="{{interval}}" vertical="{{vertical}}" autoplay="{{autoplay}}" duration="{{duration}}">
         <block wx:for="{{goodsPicsInfo}}">
@@ -30,7 +30,7 @@
       {{shopppingDetails.country}}直采 {{shopppingDetails.bigname}}发货 预计{{shopppingDetails.days}}天送达
     </view>
     <view class="weui-tab">
-      <view class="weui-navbar">
+      <view class="weui-navbar" style="{{scrollViewTop > navbarOffsetTop ? 'position:fixed;' : ''}}">
         <block wx:for="{{tabs}}" wx:key="*this">
           <view id="{{index}}" class="weui-navbar__item {{activeIndex == index ? 'weui-bar__item_on' : ''}}" bindtap="tabClick">
             <view class="weui-navbar__title">{{item}}</view>
@@ -64,7 +64,6 @@
       </view>
     </view>
   </scroll-view>
-
   <view class="buyCart ">
     <view class="cart" bindtap="toCart">
       <icon type="info" />
