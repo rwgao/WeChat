@@ -104,6 +104,9 @@ page {
 .weui-navbar__slider{
   width: 96px;
 }
+.weui-tab__panel{
+  height: auto;
+}
 .params_list{
   padding: 20rpx 45rpx;
 }

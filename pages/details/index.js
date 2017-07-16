@@ -20,6 +20,21 @@ Page({
     sliderLeft: 0
   },
 
+  // 获取tabbar距离顶部的top值
+  queryTabbarTop: function(){
+    var that = this;
+    var query = wx.createSelectorQuery();
+    query.select(".weui-navbar").boundingClientRect()
+    query.selectViewport().scrollOffset()
+    query.exec(function (res) {
+      var top = res[0].top       
+      that.setData({
+        navbarOffsetTop: top
+      })
+    })
+  },
+
+  // 图片加载完成时 由于小程序图片高度不能自适应  需要程序设置
   imageLoad: function (e) {
     var width = e.detail.width;
     var height = e.detail.height;
@@ -32,12 +47,22 @@ Page({
       detailinfo: this.data.detailinfo
     });
   },
+
+  // 购物车
   toCart: function(e){
     wx.switchTab({
       url: "../cart/index",
       data: {
         id: 11
       }
+    })
+  },
+
+  // 页面滚动
+  scrollViewEvent: function(e){
+    var scrollViewTop = e.detail.scrollTop
+    this.setData({
+      scrollViewTop: scrollViewTop
     })
   },
   /**
@@ -87,6 +112,7 @@ Page({
         })
       }
     });
+    that.queryTabbarTop()
     wx.getSystemInfo({
       success: function (res) {
         that.setData({
@@ -104,6 +130,7 @@ Page({
 
   },
 
+  // 添加到购物车
   addcart: function (event) {
     var goodid = event.currentTarget.dataset.id;
     var cartTime = util.formatTime(new Date())
@@ -122,10 +149,14 @@ Page({
       }
     })
   },
+
+  // tabbar切换
   tabClick: function (e) {
+    var top = this.data.navbarOffsetTop;
     this.setData({
       sliderOffset: e.currentTarget.offsetLeft,
-      activeIndex: e.currentTarget.id
+      activeIndex: e.currentTarget.id,
+      top: top
     });
   },
 
