@@ -25,6 +25,8 @@ Page({
         userInfo: userInfo
       })
     })
+
+    // 轮播图接口
     wx.request({
       url: 'http://huanqiuxiaozhen.com/wemall/slider/list',
       method: 'GET',
@@ -38,6 +40,8 @@ Page({
         })
       }
     })
+
+    // 主题馆接口
     wx.request({
       url: 'http://huanqiuxiaozhen.com/wemall/venues/venuesList',
       method: 'GET',
@@ -56,12 +60,30 @@ Page({
         }, 1500)
       }
     })
+
+    wx.setStorage({
+      key: 'JSESSIONID ',
+      data: 'F5FE919E88A900314DF93AD6E9299894',
+    })
+    
+    wx.setStorage({
+      key: 'JSESSIONID  ',
+      data: '82C87EFC77C0AB333F08E3FBAFC1F368',
+    })
+
+    wx.setStorage({
+      key: 'usropenid',
+      data: 'oEhDdwzZ4opKJW_VAyG2RfQGAdhg',
+    })
+
+    // 环球精选商品接口
     wx.request({
       url: 'http://huanqiuxiaozhen.com/wemall/goods/choiceList',
       method: 'GET',
       data: {},
       header: {
-        'Accept': 'application/json'
+        'Accept': 'application/json',
+        'Cookie': 'JSESSIONID = E11EC56A7850162FDCC1860E9946F40E; usropenid=oEhDdwzZ4opKJW_VAyG2RfQGAdhg; JSESSIONID=7CC83E3A72BF341FE10E1140582842A0'
       },
       success: function (res) {
         that.setData({
