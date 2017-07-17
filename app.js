@@ -6,6 +6,14 @@ App({
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
+    wx.setStorage({
+      key: 'JSESSIONID ',
+      data: 'F5FE919E88A900314DF93AD6E9299894',
+      key: 'JSESSIONID  ',
+      data: '82C87EFC77C0AB333F08E3FBAFC1F368',
+      key: 'usropenid',
+      data: 'oI-WduGucLO_WZm7r9Bag7TWdjig'
+    })
   },
   getUserInfo:function(cb){
     var that = this

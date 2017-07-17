@@ -1,5 +1,12 @@
 // pages/index/index.js
 var app = getApp()
+var openid = "";
+var usropenid = "";
+var sliderListUrl = "";
+var venuesListUrl = "";
+var choiceListUrl = "";
+var JSESSIONID1 = "";
+var JSESSIONID2 = "";
 Page({
 
   /**
@@ -20,19 +27,53 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
-    app.getUserInfo(function (userInfo) {
-      that.setData({
-        userInfo: userInfo
-      })
-    })
+    usropenid = openid = that.getCookie("usropenid")
+    JSESSIONID1 = that.getCookie("JSESSIONID ")
+    JSESSIONID2 = that.getCookie("JSESSIONID  ")
+    sliderListUrl = "http://wx.huanqiuxiaozhen.com/wemall/slider/list?openid=" + openid;
+    venuesListUrl = "http://wx.huanqiuxiaozhen.com/wemall/venues/venuesList?openid=" + openid;
+    choiceListUrl = "http://wx.huanqiuxiaozhen.com/wemall/goods/choiceList?openid=" + openid;
+    var cookie = "usropenid=" + usropenid + "; JSESSIONID=" + JSESSIONID1 + "; JSESSIONID=" + JSESSIONID2 + ";"
+    that.getSliderList(sliderListUrl, cookie, that)
+    that.getVenuesList(venuesListUrl, cookie, that)
+    that.getChoiceList(choiceListUrl, cookie,that)
+  },
 
+  getCookie:function(key){
+    var tem;
+    try {
+      tem = wx.getStorageSync(key)
+      if (tem) {
+        // Do something with return value
+        return tem;
+      }
+    } catch (e) {
+      // Do something when catch error
+      return null
+    }
+    // wx.getStorageSync({
+    //   key: key,
+    //   success: function (res) {
+    //     tem = res.data
+    //     return tem
+    //   },
+    //   fail: function (res) {
+    //   },
+    //   complete: function (res) {
+    //   },
+    // })
+    
+  },
+
+  getSliderList: function (url, cookie,that){
     // 轮播图接口
     wx.request({
-      url: 'http://huanqiuxiaozhen.com/wemall/slider/list',
+      url: url,
       method: 'GET',
       data: {},
       header: {
-        'Accept': 'application/json'
+        'Accept': 'application/json',
+        'Cookie': cookie
       },
       success: function (res) {
         that.setData({
@@ -40,14 +81,17 @@ Page({
         })
       }
     })
+  },
 
+  getVenuesList: function (url, cookie,that){
     // 主题馆接口
     wx.request({
-      url: 'http://huanqiuxiaozhen.com/wemall/venues/venuesList',
+      url: url,
       method: 'GET',
       data: {},
       header: {
-        'Accept': 'application/json'
+        'Accept': 'application/json',
+        'Cookie': cookie
       },
       success: function (res) {
         that.setData({
@@ -60,30 +104,17 @@ Page({
         }, 1500)
       }
     })
+  },
 
-    wx.setStorage({
-      key: 'JSESSIONID ',
-      data: 'F5FE919E88A900314DF93AD6E9299894',
-    })
-    
-    wx.setStorage({
-      key: 'JSESSIONID  ',
-      data: '82C87EFC77C0AB333F08E3FBAFC1F368',
-    })
-
-    wx.setStorage({
-      key: 'usropenid',
-      data: 'oEhDdwzZ4opKJW_VAyG2RfQGAdhg',
-    })
-
+  getChoiceList:function(url,cookie,that){
     // 环球精选商品接口
     wx.request({
-      url: 'http://huanqiuxiaozhen.com/wemall/goods/choiceList',
+      url: choiceListUrl,
       method: 'GET',
       data: {},
       header: {
         'Accept': 'application/json',
-        'Cookie': 'JSESSIONID = E11EC56A7850162FDCC1860E9946F40E; usropenid=oEhDdwzZ4opKJW_VAyG2RfQGAdhg; JSESSIONID=7CC83E3A72BF341FE10E1140582842A0'
+        'Cookie': cookie
       },
       success: function (res) {
         that.setData({
