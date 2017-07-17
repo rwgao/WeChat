@@ -20,11 +20,6 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
-    app.getUserInfo(function (userInfo) {
-      that.setData({
-        userInfo: userInfo
-      })
-    })
     wx.request({
       url: 'http://huanqiuxiaozhen.com/wemall/slider/list',
       method: 'GET',

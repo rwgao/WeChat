@@ -1,1 +1,29 @@
 /* pages/my/index.wxss */
+.container{
+  width: 20rem;
+  
+}
+.users {
+  width: 100%;
+  height: 260rpx;
+  padding-top: 70rpx;
+  background-color: orange;
+}
+.users .userinfo{
+  width: 4.5rem;
+  height: 4.5rem;
+  overflow: hidden;
+  border-radius: 50%;
+  margin: 0 auto;
+}
+.users .userinfo image{
+  width: 100%;
+  height: 100%;
+}
+.weui-cells{
+  width: 100%;
+  margin-top: 0;
+}
+.weui-cell::before{
+  left: 0;
+}
