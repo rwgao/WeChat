@@ -25,51 +25,6 @@ Page({
     cartQty:0
   },
 
-  // 获取tabbar距离顶部的top值
-  queryTabbarTop: function(){
-    var that = this;
-    var query = wx.createSelectorQuery();
-    query.select(".weui-navbar").boundingClientRect()
-    query.selectViewport().scrollOffset()
-    query.exec(function (res) {
-      var top = res[0].top       
-      that.setData({
-        navbarOffsetTop: top
-      })
-    })
-  },
-
-  // 图片加载完成时 由于小程序图片高度不能自适应  需要程序设置
-  imageLoad: function (e) {
-    var width = e.detail.width;
-    var height = e.detail.height;
-    var windowWidth = wx.getSystemInfoSync().windowWidth - 30;
-    var picHeight = (height / width) * windowWidth;
-    var index = e.currentTarget.dataset.index;
-    var detailinfo = this.data.detailinfo;
-    this.data.detailinfo[index].attr.height = picHeight;
-    this.setData({
-      detailinfo: this.data.detailinfo
-    });
-  },
-
-  // 购物车
-  toCart: function(e){
-    wx.switchTab({
-      url: "../cart/index",
-      data: {
-        id: 11
-      }
-    })
-  },
-
-  // 页面滚动
-  scrollViewEvent: function(e){
-    var scrollViewTop = e.detail.scrollTop
-    this.setData({
-      scrollViewTop: scrollViewTop
-    })
-  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -95,6 +50,53 @@ Page({
   onReady: function () {
 
   },
+
+  // 购物车
+  toCart: function (e) {
+    wx.switchTab({
+      url: "../cart/index",
+      data: {
+        id: 11
+      }
+    })
+  },
+
+  // 页面滚动
+  scrollViewEvent: function (e) {
+    var scrollViewTop = e.detail.scrollTop
+    this.setData({
+      scrollViewTop: scrollViewTop
+    })
+  },
+
+  // 图片加载完成时 由于小程序图片高度不能自适应  需要程序设置
+  imageLoad: function (e) {
+    var width = e.detail.width;
+    var height = e.detail.height;
+    var windowWidth = wx.getSystemInfoSync().windowWidth - 30;
+    var picHeight = (height / width) * windowWidth;
+    var index = e.currentTarget.dataset.index;
+    var detailinfo = this.data.detailinfo;
+    this.data.detailinfo[index].attr.height = picHeight;
+    this.setData({
+      detailinfo: this.data.detailinfo
+    });
+  },
+
+  // 获取tabbar距离顶部的top值
+  queryTabbarTop: function () {
+    var that = this;
+    var query = wx.createSelectorQuery();
+    query.select(".weui-navbar").boundingClientRect()
+    query.selectViewport().scrollOffset()
+    query.exec(function (res) {
+      var top = res[0].top
+      that.setData({
+        navbarOffsetTop: top
+      })
+    })
+  },
+
   // 初始化购物车数量
   showCartAmount:function(that){
     var StorageInfo = wx.getStorageInfoSync()
@@ -128,6 +130,7 @@ Page({
       return
     }
   },
+
   // 初始化tabbar切换动画宽度
   initTabbar: function(that){
     wx.getSystemInfo({
@@ -252,8 +255,6 @@ Page({
       }
     })
   },
-
-  
 
   // tabbar切换
   tabClick: function (e) {
