@@ -1,5 +1,29 @@
 <!--pages/cart/index.wxml-->
-<view class="container">
-  <view class="weui">
+<view class="page">
+  <view class="page__bd">
+    <view class="weui-cells__title">
+
+    </view>
+    <block wx:for="{{cartList}}">
+    <checkbox-group  class="weui-cells weui-cells_checkbox">
+      <label class="weui-cell weui-check__label checkbox" wx:for="{{item.group}}" wx:items="list">
+        <checkbox value="{{item.goodsid}}" checked="{{item.checked}}" />{{item.goodsname}}
+      </label>
+    </checkbox-group>
+      <view class="weui-cells weui-cells_checkbox">
+        <block wx:for="{{item.group}}" wx:items="list">
+        <label class="weui-cell weui-check__label">
+          <view class="weui-cell__hd">
+            <input type="checkbox" class="weui-check" />
+            <icon type="success" />
+          </view>
+          <view class="weui-cell__bd">
+          {{item.goodsname}}
+          </view>
+        </label>
+        </block>
+      </view>
+    </block>
+
   </view>
 </view>

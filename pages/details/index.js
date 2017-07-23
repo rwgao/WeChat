@@ -204,8 +204,9 @@ Page({
       var goodsname = product.title
       let timestamp = this.data.timestamp
       goodsamount ++;
-      var tax, ourprice, wareid, house, bigtype, qty, goodspics, guideroyalty;
-      let { tax, ourprice, wareid, house, bigtype, qty, goodspics, guideroyalty } = product;
+      // var tax, ourprice, wareid, house, bigtype, qty, goodspics, guideroyalty;
+      let { tax, ourprice, house, bigtype, qty, goodspics, guideroyalty } = product;
+      let wareid = product.bigid;
       if (timestamp != ""){
         let goods_info = {
           goodsname, timestamp, goodsamount, tax, ourprice, wareid, house, bigtype, qty, goodspics, guideroyalty

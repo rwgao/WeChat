@@ -18,7 +18,7 @@ Page({
     openid = usropenid = app.getCookie("usropenid")
     JSESSIONID1 = app.getCookie("JSESSIONID ")
     JSESSIONID2 = app.getCookie("JSESSIONID  ")
-    var cookie = "usropenid=" + 'oEhDdwzZ4opKJW_VAyG2RfQGAdhg' + "; JSESSIONID=" + JSESSIONID1 + "; JSESSIONID=" + JSESSIONID2 + ";"
+    var cookie = "usropenid=" + 'oI-WduGucLO_WZm7r9Bag7TWdjig' + "; JSESSIONID=" + JSESSIONID1 + "; JSESSIONID=" + JSESSIONID2 + ";"
     that.getIds(0, cookie )
   },
 
@@ -39,13 +39,12 @@ Page({
       key: 'checked_ids',
       data: checked_ids
     })
-    
     if (arr.length > 0){
       for (let j = 0; j < arr.length; j++){
         var goods_json = JSON.parse(app.getCookie("goods_"+arr[j]));
         var goodsid = arr[j];
         var carttime = goods_json.timestamp,
-              price = goods_json.ourprice,
+              price = goods_json.ourprice.toFixed(2),
               amount = goods_json.goodsamount,
               wareid = goods_json.wareid;
         goods.push(
@@ -60,17 +59,23 @@ Page({
         method: 'POST',
         dataType: 'json',
         data: {
-          openid: 'oEhDdwzZ4opKJW_VAyG2RfQGAdhg',
+          openid: openId,
           goodsid: ids,
           cardfee: cardfee,
           goodsinfo: goods
         },
         header: {
-          "Content-Type": "application/x-www-form-urlencoded",
+          "Content-Type":"application/x-www-form-urlencoded; charset=UTF-8",
           'Cookie': cookie + ' checked_ids='+ checked_ids + ';'
         },
         success: function(res){
           console.log(res)
+          if (res.data.code == 0) {
+            that.setData({
+              cartList: res.data.data.list,
+              stock: res.data.data.qty
+            })
+          }
         }
       })
     }
