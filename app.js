@@ -33,7 +33,21 @@ App({
       })
     }
   },
+  getCookie: function (key) {
+    var tem;
+    try {
+      tem = wx.getStorageSync(key)
+      if (tem) {
+        // Do something with return value
+        return tem;
+      }
+    } catch (e) {
+      // Do something when catch error
+      return null
+    }
+  },
   globalData:{
-    userInfo:null
+    userInfo:null,
+    R_htmlToWxml: R_htmlToWxml
   }
 })

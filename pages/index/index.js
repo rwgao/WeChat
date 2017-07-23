@@ -27,9 +27,9 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
-    usropenid = openid = that.getCookie("usropenid")
-    JSESSIONID1 = that.getCookie("JSESSIONID ")
-    JSESSIONID2 = that.getCookie("JSESSIONID  ")
+    usropenid = openid = app.getCookie("usropenid")
+    JSESSIONID1 = app.getCookie("JSESSIONID ")
+    JSESSIONID2 = app.getCookie("JSESSIONID  ")
     sliderListUrl = "http://wx.huanqiuxiaozhen.com/wemall/slider/list?openid=" + openid;
     venuesListUrl = "http://wx.huanqiuxiaozhen.com/wemall/venues/venuesList?openid=" + openid;
     choiceListUrl = "http://wx.huanqiuxiaozhen.com/wemall/goods/choiceList?openid=" + openid;
@@ -37,32 +37,6 @@ Page({
     that.getSliderList(sliderListUrl, cookie, that)
     that.getVenuesList(venuesListUrl, cookie, that)
     that.getChoiceList(choiceListUrl, cookie,that)
-  },
-
-  getCookie:function(key){
-    var tem;
-    try {
-      tem = wx.getStorageSync(key)
-      if (tem) {
-        // Do something with return value
-        return tem;
-      }
-    } catch (e) {
-      // Do something when catch error
-      return null
-    }
-    // wx.getStorageSync({
-    //   key: key,
-    //   success: function (res) {
-    //     tem = res.data
-    //     return tem
-    //   },
-    //   fail: function (res) {
-    //   },
-    //   complete: function (res) {
-    //   },
-    // })
-    
   },
 
   getSliderList: function (url, cookie,that){
