@@ -1,5 +1,12 @@
 // pages/index/index.js
 var app = getApp()
+var openid = "";
+var usropenid = "";
+var sliderListUrl = "";
+var venuesListUrl = "";
+var choiceListUrl = "";
+var JSESSIONID1 = "";
+var JSESSIONID2 = "";
 Page({
 
   /**
@@ -20,12 +27,27 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
+    usropenid = openid = app.getCookie("usropenid")
+    JSESSIONID1 = app.getCookie("JSESSIONID ")
+    JSESSIONID2 = app.getCookie("JSESSIONID  ")
+    sliderListUrl = "http://wx.huanqiuxiaozhen.com/wemall/slider/list?openid=" + openid;
+    venuesListUrl = "http://wx.huanqiuxiaozhen.com/wemall/venues/venuesList?openid=" + openid;
+    choiceListUrl = "http://wx.huanqiuxiaozhen.com/wemall/goods/choiceList?openid=" + openid;
+    var cookie = "usropenid=" + usropenid + "; JSESSIONID=" + JSESSIONID1 + "; JSESSIONID=" + JSESSIONID2 + ";"
+    that.getSliderList(sliderListUrl, cookie, that)
+    that.getVenuesList(venuesListUrl, cookie, that)
+    that.getChoiceList(choiceListUrl, cookie,that)
+  },
+
+  getSliderList: function (url, cookie,that){
+    // 轮播图接口
     wx.request({
-      url: 'http://huanqiuxiaozhen.com/wemall/slider/list',
+      url: url,
       method: 'GET',
       data: {},
       header: {
-        'Accept': 'application/json'
+        'Accept': 'application/json',
+        'Cookie': cookie
       },
       success: function (res) {
         that.setData({
@@ -33,12 +55,17 @@ Page({
         })
       }
     })
+  },
+
+  getVenuesList: function (url, cookie,that){
+    // 主题馆接口
     wx.request({
-      url: 'http://huanqiuxiaozhen.com/wemall/venues/venuesList',
+      url: url,
       method: 'GET',
       data: {},
       header: {
-        'Accept': 'application/json'
+        'Accept': 'application/json',
+        'Cookie': cookie
       },
       success: function (res) {
         that.setData({
@@ -51,12 +78,17 @@ Page({
         }, 1500)
       }
     })
+  },
+
+  getChoiceList:function(url,cookie,that){
+    // 环球精选商品接口
     wx.request({
-      url: 'http://huanqiuxiaozhen.com/wemall/goods/choiceList',
+      url: choiceListUrl,
       method: 'GET',
       data: {},
       header: {
-        'Accept': 'application/json'
+        'Accept': 'application/json',
+        'Cookie': cookie
       },
       success: function (res) {
         that.setData({
