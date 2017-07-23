@@ -146,15 +146,14 @@ Page({
   // 获取商品详情 
   getProductDetail:function(productId, openid, cookie, that){
     wx.request({
-      url: 'http://huanqiuxiaozhen.com/wemall/goods/inqgoods?id=' + productId,
-      method: 'GET',
+      url: 'http://wx.huanqiuxiaozhen.com/wemall/goods/inqgoods',
+      method: 'POST',
+      header:{
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
       data: {
         id: productId,
         openid: openid
-      },
-      header: {
-        'Accept': 'application/json',
-        'Cookie': cookie
       },
       success: function (res) {
         var goodsPicsInfo = [];
