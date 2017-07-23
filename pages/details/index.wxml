@@ -67,9 +67,15 @@
   <view class="buyCart ">
     <view class="cart" bindtap="toCart">
       <icon type="info" />
-      <text>3</text>
+      <text>{{cartQty}}</text>
     </view>
-    <view class="addcart " bindtap="addcart " data-id="{{goodid}} ">
+    <view class="addcart " wx:if="{{shopppingDetails.bigtype == '4'}}" data-id="{{goodid}} ">
+      商品已售罄
+    </view>
+    <view class="addcart " wx:elif="{{shopppingDetails.status == '0'}}" data-id="{{goodid}} ">
+      商品已下架
+    </view>
+    <view class="addcart " bindtap="addToCart" wx:else data-id="{{goodid}}">
       加入购物车
     </view>
   </view>
