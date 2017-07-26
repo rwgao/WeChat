@@ -1,22 +1,66 @@
 <!--pages/cart/index.wxml-->
 <view class="page">
   <view class="page__bd">
-    <block wx:for="{{cartList}}">
-      <view class="weui-cells__title">
-        {{item.group[0].bigname}}发货；预计{{item.group[0].days}}天送达。
-      </view>
-      <view class="weui-cells weui-cells_after-title">
-        <checkbox-group bindchange="checkboxChange">
-          <label class="weui-cell weui-check__label" wx:for="{{item.group}}" wx:key="value">
-              <checkbox class="weui-check" value="{{item.goodsid}}" checked="{{item.checked}}"/>
-              <view class="weui-cell__hd weui-check__hd_in-checkbox">
+    <checkbox-group bindchange="checkboxChange" data-key="all">
+      <block wx:for="{{cartList}}">
+        <view class="weui-cells">
+          <view class="weui-cells__title" style="padding:0; margin:0;">
+            <view class="weui-cell">
+              <label class="weui-cell__hd weui-check__label">
+                <checkbox class="weui-check" value="{{item.id}}" checked="{{item.checked}}"/>
+                <view class="weui-check__hd_in-checkbox">
                   <icon class="weui-icon-checkbox_circle" type="circle" size="23" wx:if="{{!item.checked}}"></icon>
                   <icon class="weui-icon-checkbox_success" type="success" size="23" wx:if="{{item.checked}}"></icon>
+                </view>
+              </label>
+              <view class="weui-cell__bd">{{item.group[0].bigname}}发货；预计{{item.group[0].days}}天送达</view>
+            </view>
+          </view>
+          <checkbox-group bindchange="checkboxChange" data-key="item" data-index="{{index}}">
+            <view class="weui-cell" wx:for="{{item.group}}" wx:key="value">
+              <label class="weui-cell__hd weui-check__label">
+                <checkbox class="weui-check" value="{{item.goodsid}}" checked="{{item.checked}}"/>
+                <view class=" weui-check__hd_in-checkbox">
+                    <icon class="weui-icon-checkbox_circle" type="circle" size="23" wx:if="{{!item.checked}}"></icon>
+                    <icon class="weui-icon-checkbox_success" type="success" size="23" wx:if="{{item.checked}}"></icon>
+                </view>
+              </label>
+              <view class="weui-cell__bd">
+                <view class="left pic">
+                  <navigator url="../details/index?id={{item.goodsid}}">
+                    <image src="{{item.goodspics}}">xxx</image>
+                  </navigator>
+                </view>
+                <view class="mid">
+                  <view class="name">
+                    {{item.goodsname}}
+                  </view>
+                  <view class="input-amount">
+                    <view class="minus">-</view>
+                    <view class="input">
+                      <input type="number" value="{{item.qty}}" />
+                    </view>
+                    <view class="plus">+</view>
+                  </view>
+                </view>
+                <view class="right">
+                <view class="price">
+                  ￥{{item.ourprice}}
+                </view>
+                <view class="delete">
+                  <icon type="cancel" size="23" />
+                </view>
+                </view>
               </view>
-              <view class="weui-cell__bd">{{item.goodsname}}</view>
-          </label>
-        </checkbox-group>
+            </view>
+          </checkbox-group>
+        </view>
+      </block>
+    </checkbox-group>
+    <view class="weui-cells">
+      <view class="weui-cell">
+        0000
       </view>
-    </block>
+    </view>
   </view>
 </view>
