@@ -17,7 +17,7 @@
             </view>
           </view>
           <checkbox-group bindchange="checkboxChange" data-key="item" data-index="{{index}}">
-            <view class="weui-cell" wx:for="{{item.group}}" wx:key="value">
+            <view class="weui-cell item" wx:for="{{item.group}}" wx:key="value">
               <label class="weui-cell__hd weui-check__label">
                 <checkbox class="weui-check" value="{{item.goodsid}}" checked="{{item.checked}}"/>
                 <view class=" weui-check__hd_in-checkbox">
@@ -25,22 +25,24 @@
                     <icon class="weui-icon-checkbox_success" type="success" size="23" wx:if="{{item.checked}}"></icon>
                 </view>
               </label>
-              <view class="weui-cell__bd">
-                <view class="left pic">
-                  <navigator url="../details/index?id={{item.goodsid}}">
-                    <image src="{{item.goodspics}}">xxx</image>
+              <view class="weui-cell__bd item-right">
+                <view class="left pic-warp">
+                  <navigator class="nav-pic" url="../details/index?id={{item.goodsid}}">
+                    <image class="pic" src="{{item.goodspics}}">xxx</image>
                   </navigator>
                 </view>
                 <view class="mid">
                   <view class="name">
                     {{item.goodsname}}
                   </view>
-                  <view class="input-amount">
-                    <view class="minus">-</view>
-                    <view class="input">
-                      <input type="number" value="{{item.qty}}" />
+                  <view class="amount-warp">
+                    <view class="input-amount">
+                      <view class="minus" bindtap="minusAmount" data-goodsid="{{item.goodsid}}">-</view>
+                      <view class="input">
+                        <input type="number" bindblur="changeAmount" data-goodsid="{{item.goodsid}}" value="{{item.qty}}" />
+                      </view>
+                      <view class="plus" bindtap="plusAmount" data-goodsid="{{item.goodsid}}">+</view>
                     </view>
-                    <view class="plus">+</view>
                   </view>
                 </view>
                 <view class="right">
@@ -48,7 +50,7 @@
                   ￥{{item.ourprice}}
                 </view>
                 <view class="delete">
-                  <icon type="cancel" size="23" />
+                  <icon type="cancel" bindtap="deleteOrder" data-goodsid="{{item.goodsid}}" size="23" />
                 </view>
                 </view>
               </view>
@@ -57,9 +59,28 @@
         </view>
       </block>
     </checkbox-group>
-    <view class="weui-cells">
+    <view class="weui-cells total-wrapper">
       <view class="weui-cell">
-        0000
+        <view class="left">
+          <view class="totalAmount">
+            已选择<text>{{totalAmount}}</text>件商品
+          </view>
+        </view>
+        <view class="right">
+          <view class="total">
+              <text class="text">商品总额：</text>
+              <text class="price goodsTotalPrice">￥{{totalPrice}}</text>
+          </view>
+          <view class="total">
+              <text class="text">优惠：</text>
+              <text class="price discountPrice">￥{{totalPrice}}</text>
+          </view>
+          <view class="total">
+              <text class="text">总计(不含税费,运费)：</text>
+              <text class="price totalPrice">￥{{totalPrice}}</text>
+          </view>
+          <button class="submit" bindtap="toPay" size="mini">去结算</button>
+        </view>
       </view>
     </view>
   </view>

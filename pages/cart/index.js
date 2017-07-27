@@ -119,20 +119,32 @@ Page({
         'Cookie': cookie + ' checked_ids=' + checked_ids + ';'
       },
       success: function (res) {
-        var cartList = res.data.data.list;
+        let cartList = res.data.data.list;
+        let totalPrice = 0;
+        let totalAmount = 0;
         for (let i = 0, lenI = cartList.length; i < lenI; i++) {
           let list = cartList[i];
           list.checked = true;
           list.id = i;
           for (let j = 0, lenJ = list.group.length; j < lenJ; j++) {
             list.group[j].checked = true;
+            let goods_json = app.getCookie("goods_" + list.group[j].goodsid);
+            goods_json = JSON.parse(goods_json);
+            let amount = goods_json.goodsamount;
+            list.group[j].qty = amount;
+            totalAmount += amount;
+            let price = list.group[j].ourprice;
+            let tatalPrice = amount * price;
+            totalPrice += tatalPrice;
           }
         }
         if (res.data.code == 0) {
           that.setData({
             originData: data,
             cartList: res.data.data.list,
-            stock: res.data.data.qty
+            stock: res.data.data.qty,
+            totalPrice: totalPrice,
+            totalAmount: totalAmount
           })
         }
       }
