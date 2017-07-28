@@ -16,6 +16,19 @@ function formatNumber(n) {
   return n[1] ? n : '0' + n
 }
 
+function formatPrice(price){
+  if(!price){
+    return price;
+  } else if (isNaN(price)){
+    return price;
+  } else {
+    price = price.toFixed(2);
+    return price;
+  }
+}
+
 module.exports = {
-  formatTime: formatTime
+  formatTime: formatTime,
+  formatPrice: formatPrice,
+  formatNumber: formatNumber
 }

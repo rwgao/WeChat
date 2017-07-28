@@ -1,5 +1,6 @@
 // pages/cart/index.js
 var app = getApp()
+var util = require('../../utils/util.js')
 var openid, JSESSIONID1, JSESSIONID2, usropenid;
 openid = usropenid = app.getCookie("usropenid")
 JSESSIONID1 = app.getCookie("JSESSIONID ")
@@ -134,6 +135,7 @@ Page({
             let goodsid = list.group[j].goodsid;
             list.group[j].checked = true;
             list.group[j].showTips = false;
+            list.group[j].ourprice = util.formatPrice(list.group[j].ourprice)
             list.group[j].goodsStock = that.setStock(stock,goodsid)
             let goods_json = app.getCookie("goods_" + goodsid);
             goods_json = JSON.parse(goods_json);
@@ -179,6 +181,7 @@ Page({
         }
       }
     }
+    totalPrice = util.formatPrice(totalPrice)
     this.setData({
       totalPrice: totalPrice,
       totalAmount: totalAmount

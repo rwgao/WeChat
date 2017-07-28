@@ -101,7 +101,7 @@
 }
 .goods .goods-item .price .ourprice{
   color: #ff0000;
-  font-size: 40rpx;
+  font-size: 30rpx;
   font-weight: bold;
 }
 .goods .goods-item .price .discount{
@@ -116,6 +116,6 @@
 .goods .goods-item .price .marketprice{
   color: #939393;
   text-decoration: line-through;
-  font-size: 40rpx;
+  font-size: 30rpx;
   margin-left: 30rpx;
 }

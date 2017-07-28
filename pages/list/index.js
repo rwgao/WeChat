@@ -1,4 +1,5 @@
 // pages/list/index.js
+var utils = require('../../utils/util.js')
 Page({
 
   /**
@@ -27,6 +28,10 @@ Page({
       },
       success: function (res) {
         var dataList = res.data.data;
+        for (let i = 0, lenI = dataList.length; i < lenI; i++) {
+          dataList[i].marketprice = utils.formatPrice(dataList[i].marketprice)
+          dataList[i].ourprice = utils.formatPrice(dataList[i].ourprice)
+        }
         that.setData({
           dataList: dataList
         })

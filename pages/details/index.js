@@ -176,10 +176,13 @@ Page({
             tem.push(detailinfo[k])
           }
         }
+        let shopppingDetails = res.data.data;
+        shopppingDetails.marketprice = util.formatPrice(shopppingDetails.marketprice)
+        shopppingDetails.ourprice = util.formatPrice(shopppingDetails.ourprice)
         detailinfo = tem;
         that.setData({
           goodsPicsInfo: goodsPicsInfo,
-          shopppingDetails: res.data.data,
+          shopppingDetails: shopppingDetails,
           prodparams: prodparams,
           detailinfo: detailinfo
         })

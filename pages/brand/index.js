@@ -1,4 +1,5 @@
 // pages/brand/index.js
+var utils = require('../../utils/util.js')
 Page({
 
   /**
@@ -60,6 +61,10 @@ Page({
         'Accept': 'application/json'
       },
       success: function (res) {
+        let list = res.data.data;
+        for (let i = 0, lenI = list.brand.length; i < lenI; i++) {
+          list.brand[i].minprice = utils.formatPrice(list.brand[i].minprice)
+        }
         that.setData({
           brandList: res.data.data,
           types: res.data.data.types
@@ -91,7 +96,12 @@ Page({
         'Accept': 'application/json'
       },
       success: function (res) {
-        dataList[p] = res.data.data;
+        let list = res.data.data;
+        for (let i = 0, lenI = list.dataList.length; i < lenI; i++) {
+          list.dataList[i].ourprice = utils.formatPrice(list.dataList[i].ourprice)
+          list.dataList[i].marketprice = utils.formatPrice(list.dataList[i].marketprice)
+        }
+        dataList[p] = list;
         that.setData({
           dataList: dataList
         })

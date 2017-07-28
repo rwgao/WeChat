@@ -1,4 +1,5 @@
 // pages/index/index.js
+var utils = require("../../utils/util.js");
 var app = getApp()
 var openid = "";
 var usropenid = "";
@@ -91,6 +92,11 @@ Page({
         'Cookie': cookie
       },
       success: function (res) {
+        let choiceItems = res.data.data.dataList;
+        for (let i = 0, lenI = choiceItems.length; i < lenI; i++){
+          choiceItems[i].ourprice = utils.formatPrice(choiceItems[i].ourprice)
+          choiceItems[i].marketprice = utils.formatPrice(choiceItems[i].marketprice)
+        }
         that.setData({
           choiceItems: res.data.data.dataList
         })
