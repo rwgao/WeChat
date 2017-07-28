@@ -49,7 +49,7 @@ Page({
         var goods_json = JSON.parse(app.getCookie("goods_" + arr[j]));
         var goodsid = arr[j];
         var carttime = goods_json.timestamp,
-          price = goods_json.ourprice.toFixed(2),
+          price = goods_json.ourprice,
           amount = goods_json.goodsamount,
           wareid = goods_json.wareid;
         goods.push(
@@ -191,8 +191,10 @@ Page({
   // 删除商品
   deleteGood:function(e){
     const that = this;
-    let goodsid = e.target.dataset.goodsid
+    let goods = e.target.dataset.goodsid
     let cartList = this.data.cartList;
+    let I = 0;
+    let J = 0;
     wx.showModal({
       title: '提示信息',
       content: '确定从购物车移除该商品吗？',
@@ -200,18 +202,21 @@ Page({
       cancelText: "取消",
       success: function (res) {
         if (res.confirm) {
+          
           for(let i = 0, lenI = cartList.length; i < lenI; i++){
             let list = cartList[i];
             for (let j = 0, lenJ = list.group.length; j < lenJ; j++){
-              if (list.group[j].goodsid == goodsid){
-                list.group.splice(j, 1)
-                try {
-                  wx.removeStorageSync("goods_" + goodsid)
-                } catch (e) {
-                  console.log(e)
-                }
+              if (list.group[j].goodsid == goods){
+                I = i;
+                J = j;
               }
             }
+          }
+          cartList[I].group.splice(J, 1)
+          try {
+            wx.removeStorageSync("goods_" + goods)
+          } catch (e) {
+            console.log(e)
           }
           that.sum()
           that.setData({
