@@ -4,7 +4,7 @@
     <checkbox-group bindchange="checkboxChange" data-key="all">
       <block wx:for="{{cartList}}">
         <view class="weui-cells">
-          <view class="weui-cells__title" style="padding:0; margin:0;">
+          <view class="weui-cells__title" wx:if="{{item.group.length}}" style="padding:0; margin:0;">
             <view class="weui-cell">
               <label class="weui-cell__hd weui-check__label">
                 <checkbox class="weui-check" value="{{item.id}}" checked="{{item.checked}}"/>
@@ -19,7 +19,7 @@
           <checkbox-group bindchange="checkboxChange" data-key="item" data-index="{{index}}">
             <view class="weui-cell item" wx:for="{{item.group}}" wx:key="value">
               <label class="weui-cell__hd weui-check__label">
-                <checkbox class="weui-check" value="{{item.goodsid}}" checked="{{item.checked}}"/>
+                <checkbox class="weui-check check-item" value="{{item.goodsid}}" checked="{{item.checked}}"/>
                 <view class=" weui-check__hd_in-checkbox">
                     <icon class="weui-icon-checkbox_circle" type="circle" size="23" wx:if="{{!item.checked}}"></icon>
                     <icon class="weui-icon-checkbox_success" type="success" size="23" wx:if="{{item.checked}}"></icon>
@@ -37,12 +37,13 @@
                   </view>
                   <view class="amount-warp">
                     <view class="input-amount">
-                      <view class="minus" bindtap="minusAmount" data-goodsid="{{item.goodsid}}">-</view>
+                      <view class="minus" bindtap="minusAmount" data-qty="{{item.qty}}" data-goodsid="{{item.goodsid}}">-</view>
                       <view class="input">
                         <input type="number" bindblur="changeAmount" data-goodsid="{{item.goodsid}}" value="{{item.qty}}" />
                       </view>
-                      <view class="plus" bindtap="plusAmount" data-goodsid="{{item.goodsid}}">+</view>
+                      <view class="plus" bindtap="plusAmount" data-qty="{{item.qty}}" data-goodsid="{{item.goodsid}}">+</view>
                     </view>
+                    <text wx:if="{{item.showTips}}" class="tips">剩余库存:{{item.goodsStock}}</text>
                   </view>
                 </view>
                 <view class="right">
@@ -50,7 +51,7 @@
                   ￥{{item.ourprice}}
                 </view>
                 <view class="delete">
-                  <icon type="cancel" bindtap="deleteOrder" data-goodsid="{{item.goodsid}}" size="23" />
+                  <icon type="cancel" bindtap="deleteGood" data-goodsid="{{item.goodsid}}" size="23" />
                 </view>
                 </view>
               </view>

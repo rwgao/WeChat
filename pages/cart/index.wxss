@@ -49,6 +49,17 @@
   width: 150rpx;
   height: 48rpx;
   border: 1px solid #ccc;
+  float: left;
+}
+.tips{
+  font-size: 26rpx;
+  line-height: 48rpx;
+  vertical-align: top;
+  color: #ff00ff;
+  height: 48rpx;
+  display: block;
+  margin: 0 10rpx;
+  float: left;
 }
 .input-amount .minus,.input-amount .plus,.input-amount .input{
   width: 49rpx;
@@ -85,8 +96,12 @@
   align-items: top!important;
 }
 .total-wrapper .left{
-  vertical-align: top;
   width: 230rpx;
+  height: 248rpx;
+  line-height: 60rpx;
+}
+.total-wrapper .totalAmount{
+  float: left;
 }
 .total-wrapper .totalAmount text{
   color: #ff00ff;
